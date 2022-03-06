@@ -1,0 +1,14 @@
+0000000000000000000000000000000000000000 1df05a985090a0578dd83e8227b1a97b636795b1 Simon Irvine <simon.t.irvine@gmail.com> 1638126059 +0000	commit (initial): O
+1df05a985090a0578dd83e8227b1a97b636795b1 0000000000000000000000000000000000000000 Simon Irvine <simon.t.irvine@gmail.com> 1638126263 +0000	Branch: renamed refs/heads/master to refs/heads/main
+0000000000000000000000000000000000000000 1df05a985090a0578dd83e8227b1a97b636795b1 Simon Irvine <simon.t.irvine@gmail.com> 1638126263 +0000	Branch: renamed refs/heads/master to refs/heads/main
+1df05a985090a0578dd83e8227b1a97b636795b1 c5643aecb36c66bb0962fe995fefe4b47692df5f Simon Irvine <simon.t.irvine@gmail.com> 1638127311 +0000	commit: Copying over original dataset
+c5643aecb36c66bb0962fe995fefe4b47692df5f cac5fffb790af850f3d7e516bb026b53b04f06f4 Simon Irvine <simon.t.irvine@gmail.com> 1638129702 +0000	commit: Unzipped dataset and moved to data folder
+cac5fffb790af850f3d7e516bb026b53b04f06f4 790d0d53d0249dbb974c4b43d74d616c3fc5a64b Simon Irvine <simon.t.irvine@gmail.com> 1638130660 +0000	commit: Update of global.dcf to load ggplot2
+790d0d53d0249dbb974c4b43d74d616c3fc5a64b 7d8965d866f12da5a4de9e2c5bd5f700f33a14d4 Simon Irvine <simon.t.irvine@gmail.com> 1638131567 +0000	commit: Turn logging on within project - log4r
+7d8965d866f12da5a4de9e2c5bd5f700f33a14d4 5384703e92c373a161d160e9adae7f2d56e4f124 Simon Irvine <simon.t.irvine@gmail.com> 1638403695 +0000	commit: Updated global config and munge script to merge all relevant dataframes
+5384703e92c373a161d160e9adae7f2d56e4f124 ac63aaa2814398e2c6ca00dafe0c10a1bb05f38a Simon Irvine <simon.t.irvine@gmail.com> 1638409554 +0000	commit: Creation of R Markdown document with headings and introduction
+ac63aaa2814398e2c6ca00dafe0c10a1bb05f38a 917ca66f0dd6464c058e41fc8bd43d9c9390e7bb Simon Irvine <simon.t.irvine@gmail.com> 1638418261 +0000	commit: Report update: Business understanding
+917ca66f0dd6464c058e41fc8bd43d9c9390e7bb a14a4ace46e3457df1d8bb2d813613715d29b7ca Simon Irvine <simon.t.irvine@gmail.com> 1638424064 +0000	commit: Import and Tidy phases of EDA
+a14a4ace46e3457df1d8bb2d813613715d29b7ca caf1cc309d75b1989a7b7ce816ee36a8fe3c8582 Simon Irvine <simon.t.irvine@gmail.com> 1638487200 +0000	commit: Updated import section of report
+caf1cc309d75b1989a7b7ce816ee36a8fe3c8582 d9f7956bc1cc3e09e753d001f4512239f37d6760 Simon Irvine <simon.t.irvine@gmail.com> 1638501648 +0000	commit: Completed Import stage
+d9f7956bc1cc3e09e753d001f4512239f37d6760 24f34c07693ce5d84bac734774aa683ad18efeea Simon Irvine <simon.t.irvine@gmail.com> 1638521819 +0000	commit: Final report on CSC8631 Assignment

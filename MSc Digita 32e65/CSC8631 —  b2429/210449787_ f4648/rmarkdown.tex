@@ -1,0 +1,1258 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={CSC8631: Data Management and Exploratory Data Analysis},
+  pdfauthor={Simon Irvine \textbar{} 210449787},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{titling}
+\pretitle{\begin{center} \includegraphics[width=2in,height=15in]{logo.png}\LARGE\\}
+\posttitle{\end{center}}
+\usepackage{fvextra}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{CSC8631: Data Management and Exploratory Data Analysis}
+\author{Simon Irvine \textbar{} 210449787}
+\date{03 December, 2021}
+
+\begin{document}
+\maketitle
+
+\hypertarget{assignment}{%
+\section{Assignment}\label{assignment}}
+
+\textbf{Data Management and Exploratory Data Analysis - CSC8631
+Coursework (Semester 1, 2021)}
+
+\begin{itemize}
+\item
+  Module Leader: Dr Matthew Forshaw
+\item
+  Lecturer: Dr Joe Matthews
+\end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics{eda_stack.png}
+\caption{Data management and exploratory data analysis tools}
+\end{figure}
+
+\hypertarget{the-brief}{%
+\section{The Brief}\label{the-brief}}
+
+\hypertarget{scenario}{%
+\subsection{Scenario}\label{scenario}}
+
+Learning Analytics, a rapidly-growing application area for Data Science,
+is defined as ``the measurement, collection, analysis and reporting of
+data about learners and their contexts, for purposes of understanding
+and optimising learning and the environment in which it
+occurs''\footnote{George Siemens and Phil Long. Penetrating the Fog:
+  Analytics in Learning and Education. EDUCAUSE review, 46(5):30, 2011}.
+
+Existing mechanisms to record student engagement (e.g.~attendance
+monitoring) fail to capture the extent and quality of engagement outside
+of the classroom environment. Further complementary sources of data are
+routinely collected about our learners (e.g.~use of on-campus
+facilities, Virtual Learning Environment (VLE) and Re-Cap access, and
+student wellbeing referrals); however, these currently reside in a
+number of silos.
+
+Learning Analytics seeks to aggregate these sources of data to derive
+shared insights, and provide effective measures of engagement. Insights
+may inform learning design, inform intervention processes for at-risk
+students, and improve student attainment.
+
+The most complete introduction is available in government policy policy
+report ``From Bricks To Clicks''\footnote{\url{http://www.policyconnect.org.uk/hec/sites/site_hec/files/report/419/fieldreportdownload/frombrickstoclicks-hecreportforweb.pdf}}.
+The report is quite extensive, but there are some nice case studies from
+Nottingham Trent and the OU to give you a flavour of the types of
+projects in this area.
+
+\hypertarget{challenge}{%
+\subsection{Challenge}\label{challenge}}
+
+In this project we will emulate a very familiar process undertaken by
+data analysts. We will take a dataset provided to us, and develop a
+suite of tools which allow us to extract interesting insights from this
+data in a quick, reliable and repeatable manner. The datasets you are
+expected interpret as a data analyst are commonly previously unseen, so
+the process of building a pipeline is an exploratory one. Consequently,
+you will be expected to review and interrogate the data to gain an
+understanding of its structure and composition.
+
+In this coursework you will develop a data analysis pipeline to explore
+a given dataset. There are no formal requirements for the functionality
+or focus of your analysis. Your data analysis should follow routes of
+enquiry which are of greatest interest to you. Therefore, there exists
+scope for a great deal of flexibility so we anticipate solutions to this
+challenge will vary.
+
+We encourage you to pursue ambitious analysis, but just as importantly
+we are looking for good programming practice. When developing large
+systems such as these, it is important that you write your code
+incrementally, and test it carefully before continuing to add additional
+functionality.
+
+\newpage
+
+\hypertarget{business-understanding}{%
+\section{Business Understanding}\label{business-understanding}}
+
+In addition to providing an exploratory data analysis of a given
+dataset, best-practice development is of key relevance to successfully
+completing the assignment to a sufficient quality standard. Therefore,
+as we explore the dataset - asking questions and iteratively diving
+deeper - the author will highlight goals, objectives and success
+criteria that will relate to the actual analysis work \textbf{and} to
+version control, documentation, reproducibility, and `literate
+programming'.
+
+\hypertarget{objectives}{%
+\subsection{Objectives}\label{objectives}}
+
+The primary objective is to develop a data analysis pipeline to explore
+the provided dataset maintaining a balance between being an
+\emph{interative} and \emph{creative} process Since there is less
+emphasis on the generating successful findings, the author considers an
+interative scientific method to be most appropriate.
+
+Secondarily, an important objective is to present this analysis in a
+well-documented and reproducible manner - allowing other analysts to
+recreate and further develop this work with minimal frustration or with
+diverging results.
+
+\hypertarget{success-criteria}{%
+\subsubsection{Success Criteria}\label{success-criteria}}
+
+Based on these main objectives, the author proposes the following simple
+success critera for this exploratory data analysis:
+
+\begin{itemize}
+\item
+  Data are imported and processed allowing exploratory data analysis;
+\item
+  A repository and version control system is established;
+\item
+  Appropriate questions are asked throughout to further analysis;
+\item
+  Processes and code are understandable and reproducible;
+\item
+  A final report is produced.
+\end{itemize}
+
+\hypertarget{situation}{%
+\subsection{Situation}\label{situation}}
+
+For this analysis it is important to consider the resources available:
+personnel, data, computing resources, and software.
+
+\hypertarget{inventory-of-resources}{%
+\subsubsection{Inventory of Resources}\label{inventory-of-resources}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Personnel}: Author, peer study group, and academic lecture
+  team
+\item
+  \textbf{Data}: Dataset MOOC FutureLearn Cybersecurity - admin logs (62
+  .csv files) and course overview documents (7 .pdf files)
+\item
+  \textbf{Computing}: Personal laptop (AMD Ryzen 7 with 16GB RAM), and
+  Newcastle University Tier 2 Azure Virtual Desktop
+\item
+  \textbf{Software}: R Studio (R, projecttemplate, dplyr, ggplot,
+  readr), Git Bash, PowerPoint
+\end{enumerate}
+
+\hypertarget{assumptions-and-constraints}{%
+\subsubsection{Assumptions and
+Constraints}\label{assumptions-and-constraints}}
+
+The author's initial assumptions falls into two main categories; a)
+technical, and b) practical. The technical assumptions are as follows:
+
+\begin{quote}
+\begin{itemize}
+\tightlist
+\item
+  The instruction and guidance provided by the academic staff is
+  sufficient to be able to understand and \emph{solve} the problem of
+  this assignment; and,
+\end{itemize}
+\end{quote}
+
+\begin{quote}
+\begin{itemize}
+\tightlist
+\item
+  The proposed tools and processes, namely CLI, R (including packages)
+  and CRISP-DM, are sufficient to successfully complete this assignment.
+\end{itemize}
+\end{quote}
+
+The practical assumptions are as follows:
+
+\begin{quote}
+\begin{itemize}
+\tightlist
+\item
+  The dataset quality is sufficient without support from an subject
+  matter expert to navigate any noise or bias;
+\end{itemize}
+\end{quote}
+
+\begin{quote}
+\begin{itemize}
+\tightlist
+\item
+  There are insights to be gained from the dataset worth of this
+  exploratory analysis; and,
+\end{itemize}
+\end{quote}
+
+\begin{quote}
+\begin{itemize}
+\tightlist
+\item
+  The author possesses the skill to leverage the tools appropriately to
+  allow successful analysis.
+\end{itemize}
+\end{quote}
+
+The constraints for this piece of work are largely related to the
+author's skillset (with no prior experience of using these tools) and
+sufficient time allocation to the analysis. Although preferable, it is
+not necessary for this analysis to provide any actionable insights or
+successful findings - however, its processes, documentation and
+reprodicibility are important.
+
+\hypertarget{risks-and-contingencies}{%
+\subsubsection{Risks and contingencies}\label{risks-and-contingencies}}
+
+There are no specific risks to this analysis, other than that there is a
+submission deadline. Illness, poor time management or an act of God can
+be mitigated by careful planning and updating the customer (academic
+staff) of an increased likelihood of missing the deadline.
+
+\hypertarget{terminology}{%
+\subsection{Terminology}\label{terminology}}
+
+It is useful to provide a brief glossary of terms used within data
+analytics projects to support business understanding.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.40}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.60}}@{}}
+\caption{Glossary of Business Terms}\tabularnewline
+\toprule
+\textbf{Term} & \textbf{Definition} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Term} & \textbf{Definition} \\
+\midrule
+\endhead
+Cybersecurity & The protection of computer systems and networks from
+information disclosure, theft of or damage to their hardware, software,
+or electronic data, as well as from the disruption or misdirection of
+the services they provide. \\
+FutureLearn & A British digital education platform founded in December
+2012. The company is jointly owned by The Open University and SEEK
+Ltd.~It is a Massive Open Online Course, ExpertTrack, microcredential
+and Degree learning platform. \\
+Learner ID & A variable used within the dataset to identify a user while
+maintaining their anonymity. \\
+MOOC & A massive open online course is an online course aimed at
+unlimited participation and open access via the Web. \\
+Sentiment survey & A weekly questionnaire completed by users to gain
+feedback on the user and learning experience. \\
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.40}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.60}}@{}}
+\caption{Glossary of Data Analytics Terms}\tabularnewline
+\toprule
+\textbf{Term} & \textbf{Definition} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Term} & \textbf{Definition} \\
+\midrule
+\endhead
+Algorithm & An unambiguous mathematical specification or statistical
+process used to perform analysis of data. \\
+Correlation & Measure of association of two variables. \\
+Dataset & A dataset is the base of all multivariate data analysis, often
+also called a data matrix. It is made up of values of several different
+variables for a number of observations. \\
+Data analytics & The process of examining large data sets to uncover
+hidden patterns, unknown correlations, trends, customer preferences and
+other useful business insights. \\
+Data science & A discipline that combines statistics, data
+visualization, computer programing, data mining and software engineering
+to extract knowledge and insights from large and complex data sets. \\
+dplyr & An open-source data manipulation package for the statistical
+programming language R. \\
+ggplot & An open-source data visualization package for the statistical
+programming language R. \\
+Histogram & A column (bar) plot visualizing the distribution of a
+variable. \\
+Linear regression & A statistical method used to summarize and show
+relationships between variables. \\
+Outliers & Extreme values that might be errors in measurement and
+recording, or might be accurate reports of rare events. \\
+R & A programming language and free software environment for statistical
+computing and graphics. It is widely used among statisticians and data
+miners for developing statistical software and data analysis. \\
+Version control & The practice of tracking and managing changes to
+software code. Version control systems are software tools that help
+software teams manage changes to source code over time. \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{data-mining-goals}{%
+\subsection{Data Mining Goals}\label{data-mining-goals}}
+
+Since \emph{success findings} are not a key requirement of the customer,
+the data mining goals do not require customary specificity. However, it
+is the goal of this analysis to gain at least (3) insights from the
+dataset relating to user experience and completion of the online course
+\textbf{`Cyber Security: Safety at Home, Online, in Life'} during its
+multiple deliveries (runs) over a two-year period.
+
+\newpage
+
+\hypertarget{project-plan}{%
+\subsection{Project Plan}\label{project-plan}}
+
+For a exploratory data analysis project such as this, with a minimal
+number of resources, only a simple plan is required to achieve the
+success criteria.
+
+\begin{figure}
+\centering
+\includegraphics{data-science-workflow.png}
+\caption[The \textbf{``R for Data Science''} model of required
+tools]{The \textbf{``R for Data Science''} model of required
+tools\footnotemark{}}
+\end{figure}
+\footnotetext{R for Data Science: Import, Tidy, Transform, Visualize,
+  and Model Data. Whickham, H and Grolemund, G. O'Reilly Media; 1st
+  edition (January 17, 2017)}
+
+It is the intention of the author to employ a plan based on
+CRISP-DM\footnote{\textbf{CR}oss \textbf{I}ndustry \textbf{S}tandard
+  \textbf{P}rocess for \textbf{D}ata \textbf{M}ining (CRISP-DM) is a
+  process model with six phases that naturally describes the data
+  science life cycle.} to set \emph{guardrails} to help plan, organize
+and implement this project. A relevant distillation of this can be found
+in the ``R for Data Science'' model (see Figure 2) with the steps
+included within the interation cycle. The author will use this model as
+the basis for his plan, as follows:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Import}
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  Preparing project structure
+\item
+  Setting up environment and packages
+\item
+  Collecting data
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  \textbf{Tidy}
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  Exploring data
+\item
+  Pre-processing and cleaning
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  \textbf{The Loop}
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  Questioning
+\item
+  Transforming
+\item
+  Visualizing
+\item
+  Insights
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  \textbf{Communicate}
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  Report
+\item
+  Presentation
+\item
+  Future work
+\end{itemize}
+
+\newpage
+
+\hypertarget{import}{%
+\section{1. Import}\label{import}}
+
+For this analysis the dataset has already been provided with no specific
+requirements to perform technical data collection processes. The import
+process will consist mostly of establishing an opinionated project
+structure, setting up the analysis environment and adding the dataset to
+the working directory.
+
+\hypertarget{preparing-project-structure}{%
+\subsection{Preparing project
+structure}\label{preparing-project-structure}}
+
+As per best practice, the author has elected to use a semi-automated
+project tool that will create the working directory folders, config
+files and run pre-processing scripts. This package is compatible with
+the chosen IDE (\emph{R Studio}) and is called
+\emph{ProjectTemplate}\footnote{ProjectTemplate is a system for
+  automating the thoughtless parts of a data analysis project. See
+  \url{http://projecttemplate.net/getting_started.html} for details on
+  how to set up.}.
+
+\hypertarget{setting-up-environment-and-packages}{%
+\subsection{Setting up environment and
+packages}\label{setting-up-environment-and-packages}}
+
+Since the chosen language is R, the author has chosen to use \emph{R
+Studio}\footnote{See \url{https://www.rstudio.com/}} and install the
+\emph{TidyVerse}\footnote{TidyVerse is an opinionated collection of R
+  packages designed for data science. See
+  \url{https://www.tidyverse.org/packages/} for more information.}
+package, which comprises multiple data manipulation and graphics
+libraries, suitable for this kind of analysis.
+
+\hypertarget{environment-and-packages}{%
+\subsubsection{Environment and
+Packages}\label{environment-and-packages}}
+
+Initially, we need to install the required R packages to allow us to
+perform our analysis. We are most interested manipulating data, tidying
+it up and creating graphics.
+
+\begin{verbatim}
+# Install R packages
+install.packages("tidyverse")
+install.packages("projecttemplate")
+\end{verbatim}
+
+\hypertarget{project-template}{%
+\subsubsection{Project Template}\label{project-template}}
+
+Creating a project with ProjectTemplate automatically populates a
+structured directory for us to work within.
+
+\begin{verbatim}
+# Let's set up the project using Project Template
+  library("ProjectTemplate")
+  create.project("CSC8631-SIrvine")
+\end{verbatim}
+
+\hypertarget{git}{%
+\subsubsection{Git}\label{git}}
+
+Version control is a system that records changes to a file or set of
+files over time so that you can recall specific versions later. This is
+important for the integrity and reproducibility of a project. The author
+has selected Git to provide version control for this analysis project -
+with commits also pushed to Github.
+
+\newpage
+
+A Git directory is where Git stores the metadata and object database for
+your project. This is the most important part of Git, and it is what is
+copied when you clone a repository from another computer.
+
+The basic Git workflow goes something like this:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  You modify files in your working tree.
+\item
+  You selectively stage just those changes you want to be part of your
+  next commit, which adds only those changes to the staging area.
+\item
+  You do a commit, which takes the files as they are in the staging area
+  and stores that snapshot permanently to your Git directory.
+\end{enumerate}
+
+\textbf{Within a Command Line Interface, i.e.~Git Bash:}
+
+\begin{verbatim}
+# Change directory to where your project is based, i.e. the working directory
+  $ cd /to/path/ 
+
+# Lists all files and folders in the directory
+  $ ls 
+  
+# Adds all files in the directory to the git
+  $ git add -A 
+  
+# This is where you save each version of your work 
+# You can add comments in case you need to roll back later
+  $ git commit -m "Add comments here" 
+
+# Optionally you can push your local Git to a server, such as Github. 
+# Set up repository and push commits (versions) later.
+  $ git push -u original main
+\end{verbatim}
+
+\hypertarget{collecting-data}{%
+\subsection{Collecting data}\label{collecting-data}}
+
+The author received the dataset and copied the the zip file over to the
+\emph{data folder} of the working directory.
+
+\textbf{Within a Command Line Interface, i.e.~Git Bash:}
+
+\begin{verbatim}
+unzip -d /CSC8631-SIrvine/data/ {FutureLearn MOOC Dataset.zip}
+\end{verbatim}
+
+\newpage
+
+\hypertarget{tidy}{%
+\section{2. Tidy}\label{tidy}}
+
+Tidying refers to a systematic and opinionated method of organizing data
+to support data science tasks. Since we are using \emph{TidyVerse}, we
+will utilize the \emph{tidyr} package to tidy data. Once you have tidy
+data and the tidy tools provided by packages in the tidyverse, you will
+spend much less time munging data from one representation to another,
+allowing you to spend more time on the analytic questions at hand.
+
+\hypertarget{exploring-data}{%
+\subsection{Exploring data}\label{exploring-data}}
+
+As an initial step we will explore the data using basic tools within the
+R package.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Define data folder location and target files. This will prompt you to target the data folder.}
+\NormalTok{data\_folder }\OtherTok{=} \FunctionTok{choose.dir}\NormalTok{()}
+\NormalTok{files }\OtherTok{=} \FunctionTok{list.files}\NormalTok{(}\AttributeTok{path =}\NormalTok{ data\_folder)}
+
+\CommentTok{\# Number of files}
+\FunctionTok{length}\NormalTok{(files)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 62
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Top 15 files in data folder}
+\FunctionTok{head}\NormalTok{(files, }\DecValTok{15}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "5 step names overview.html"                             "cyber-security-1_archetype-survey-responses.csv"       
+##  [3] "cyber-security-1_enrolments.csv"                        "cyber-security-1_leaving-survey-responses.csv"         
+##  [5] "cyber-security-1_question-response.csv"                 "cyber-security-1_step-activity.csv"                    
+##  [7] "cyber-security-1_weekly-sentiment-survey-responses.csv" "cyber-security-2_archetype-survey-responses.csv"       
+##  [9] "cyber-security-2_enrolments.csv"                        "cyber-security-2_leaving-survey-responses.csv"         
+## [11] "cyber-security-2_question-response.csv"                 "cyber-security-2_step-activity.csv"                    
+## [13] "cyber-security-2_team-members.csv"                      "cyber-security-2_weekly-sentiment-survey-responses.csv"
+## [15] "cyber-security-3_archetype-survey-responses.csv"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Let\textquotesingle{}s have a look at one of these .csv files}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{head}\NormalTok{(cyber.security}\FloatTok{.1}\NormalTok{\_enrolments, }\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: `...` is not empty.
+## 
+## We detected these problematic arguments:
+## * `needs_dots`
+## 
+## These dots only exist to allow future extensions and should be empty.
+## Did you misspecify an argument?
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 10 x 13
+##    learner_id enrolled_at unenrolled_at role  fully_participa~ purchased_state~ gender country age_range highest_educati~ employment_stat~ employment_area
+##    <chr>      <chr>       <chr>         <chr> <chr>            <chr>            <chr>  <chr>   <chr>     <chr>            <chr>            <chr>          
+##  1 160d6600-~ 2016-08-10~ ""            lear~ ""               ""               Unkno~ Unknown Unknown   Unknown          Unknown          Unknown        
+##  2 4dc22fed-~ 2016-05-24~ "2018-10-30 ~ lear~ ""               ""               male   PE      46-55     university_degr~ working_part_ti~ teaching_and_e~
+##  3 ecdd37db-~ 2016-05-19~ ""            lear~ "2016-09-22 16:~ ""               Unkno~ Unknown Unknown   Unknown          Unknown          Unknown        
+##  4 988964c9-~ 2016-05-19~ ""            lear~ ""               ""               Unkno~ Unknown Unknown   Unknown          Unknown          Unknown        
+##  5 f1493366-~ 2016-09-19~ ""            lear~ ""               ""               Unkno~ Unknown Unknown   Unknown          Unknown          Unknown        
+##  6 25cc3b46-~ 2016-08-30~ ""            lear~ "2016-10-25 12:~ ""               Unkno~ Unknown Unknown   Unknown          Unknown          Unknown        
+##  7 9c23a086-~ 2016-06-22~ ""            lear~ "2016-10-10 11:~ ""               Unkno~ Unknown Unknown   Unknown          Unknown          Unknown        
+##  8 8851dc49-~ 2016-08-07~ ""            lear~ "2018-10-17 18:~ ""               Unkno~ Unknown Unknown   Unknown          Unknown          Unknown        
+##  9 a59b0a12-~ 2016-08-02~ "2018-10-17 ~ lear~ ""               ""               Unkno~ Unknown Unknown   Unknown          Unknown          Unknown        
+## 10 198c1017-~ 2016-09-09~ ""            lear~ ""               ""               Unkno~ Unknown Unknown   Unknown          Unknown          Unknown        
+## # ... with 1 more variable: detected_country <chr>
+\end{verbatim}
+
+As can be seen, there are over 60 files comprising \emph{.csv} and
+\emph{.pdf} formats. Based on a quick check of the files, we can see
+that these relate to a online MOOC, called \textbf{`Cyber Security:
+Safety at Home, Online, in Life'}\footnote{This MOOC is still available,
+  as of December 2021, on FutureLearn's website and offered as a
+  partnership with Newcastle University.
+  \url{https://www.futurelearn.com/courses/cyber-security}} delivered by
+\textbf{FutureLearn} over a period of two years and seven runs.
+
+At this stage, we might start asking what does the data in these
+dataframes refer to. Are there any interesting column lables (variables)
+within the dataset? From a quick exploration we can say a few things
+about the data:
+
+\begin{itemize}
+\item
+  There were seven recorded runs of this MOOC;
+\item
+  There are learners from many countries;
+\item
+  Not all the learners completed the leaving or weekly sentiment
+  surveys;
+\item
+  A lot of the learner details are unspecified/unknown;
+\item
+  Some videos were more popular than others.
+\end{itemize}
+
+\hypertarget{pre-processing-and-cleaning}{%
+\subsection{Pre-processing and
+cleaning}\label{pre-processing-and-cleaning}}
+
+As part of \emph{ProjectTemplate}, we have some pre-processing already
+established such as loading appropriate libraries, calling cached
+objects and running munge scripts.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Pre{-}processing script for MOOC FutureLearn Dataset EDA}
+
+\CommentTok{\# Libraries import}
+    \FunctionTok{library}\NormalTok{(tidyverse)}
+    \FunctionTok{library}\NormalTok{(ProjectTemplate)}
+\end{Highlighting}
+\end{Shaded}
+
+Data cleaning is an important step to raise the data quality to level
+required for analysis. This may involve selection of clean subsets of
+the data, the insertion of suitable defaults, or more ambitious
+techniques such as the estimation of missing data by modeling. As a
+first step, the author proposes to join the runs into single dataframes
+using \emph{rbind()}. An example is shown below.
+
+\begin{verbatim}
+# The dataset comprises .csv  and .pdf files related to the delivery (7 runs) of a MOOC by FutureLearn. 
+# For preprocessing, we want combine all the dataframes to allow easier analysis.
+
+all.archetype.survey.responses = 
+  rbind.data.frame(
+  cyber.security.1_archetype.survey.responses,
+  cyber.security.2_archetype.survey.responses,
+  cyber.security.3_archetype.survey.responses,
+  cyber.security.4_archetype.survey.responses,
+  cyber.security.5_archetype.survey.responses,
+  cyber.security.6_archetype.survey.responses,
+  cyber.security.7_archetype.survey.responses)
+\end{verbatim}
+
+Then we want to remove clearly irrelevant or incorrect columns, possibly
+modifying columns names if appropriate.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Remove unwanted columns from dataframes}
+
+\CommentTok{\# Remove "purchased\_statement\_at"}
+\NormalTok{all.enrolments }\OtherTok{=} \FunctionTok{select}\NormalTok{(all.enrolments, learner\_id, enrolled\_at,    unenrolled\_at,  role,   fully\_participated\_at, gender,  country,    age\_range,  highest\_education\_level,    employment\_status,  employment\_area,    detected\_country)}
+\NormalTok{all.enrolments}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: `...` is not empty.
+## 
+## We detected these problematic arguments:
+## * `needs_dots`
+## 
+## These dots only exist to allow future extensions and should be empty.
+## Did you misspecify an argument?
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 34,954 x 12
+##    learner_id    enrolled_at   unenrolled_at   role  fully_participa~ gender country age_range highest_educati~ employment_stat~ employment_area detected_country
+##    <chr>         <chr>         <chr>           <chr> <chr>            <chr>  <chr>   <chr>     <chr>            <chr>            <chr>           <chr>           
+##  1 160d6600-ea0~ 2016-08-10 1~ ""              lear~ ""               Unkno~ Unknown Unknown   Unknown          Unknown          Unknown         GB              
+##  2 4dc22fed-63d~ 2016-05-24 1~ "2018-10-30 20~ lear~ ""               male   PE      46-55     university_degr~ working_part_ti~ teaching_and_e~ PE              
+##  3 ecdd37db-0c7~ 2016-05-19 0~ ""              lear~ "2016-09-22 16:~ Unkno~ Unknown Unknown   Unknown          Unknown          Unknown         NG              
+##  4 988964c9-741~ 2016-05-19 2~ ""              lear~ ""               Unkno~ Unknown Unknown   Unknown          Unknown          Unknown         UG              
+##  5 f1493366-17a~ 2016-09-19 1~ ""              lear~ ""               Unkno~ Unknown Unknown   Unknown          Unknown          Unknown         IM              
+##  6 25cc3b46-a95~ 2016-08-30 0~ ""              lear~ "2016-10-25 12:~ Unkno~ Unknown Unknown   Unknown          Unknown          Unknown         NO              
+##  7 9c23a086-f6b~ 2016-06-22 1~ ""              lear~ "2016-10-10 11:~ Unkno~ Unknown Unknown   Unknown          Unknown          Unknown         GB              
+##  8 8851dc49-028~ 2016-08-07 1~ ""              lear~ "2018-10-17 18:~ Unkno~ Unknown Unknown   Unknown          Unknown          Unknown         GB              
+##  9 a59b0a12-af4~ 2016-08-02 1~ "2018-10-17 21~ lear~ ""               Unkno~ Unknown Unknown   Unknown          Unknown          Unknown         FR              
+## 10 198c1017-51f~ 2016-09-09 2~ ""              lear~ ""               Unkno~ Unknown Unknown   Unknown          Unknown          Unknown         GB              
+## # ... with 34,944 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Remove "id" and "responded\_at"}
+\NormalTok{all.archetype.survey.responses }\OtherTok{=} \FunctionTok{select}\NormalTok{(all.archetype.survey.responses, learner\_id, archetype)}
+
+\CommentTok{\# Remove "id"}
+\NormalTok{all.archetype.survey.responses }\OtherTok{=} \FunctionTok{select}\NormalTok{(all.leaving.survey.responses, learner\_id, left\_at,  leaving\_reason, last\_completed\_step\_at, last\_completed\_step,    last\_completed\_week\_number, last\_completed\_step\_number)}
+
+\CommentTok{\# Remove "cloze\_response", "question\_type", "week\_number",  "step\_number",  "question\_number",  "response", "submitted\_at"}
+\NormalTok{all.question.response }\OtherTok{=} \FunctionTok{select}\NormalTok{(all.question.response, learner\_id,   quiz\_question, correct)}
+
+\CommentTok{\# Remove "week\_number", "step\_number", "first\_visited\_at", "last\_completed\_at"}
+\NormalTok{all.step.activity }\OtherTok{=} \FunctionTok{select}\NormalTok{(all.step.activity, learner\_id,   step)}
+
+\CommentTok{\# Remove "first\_name", "last\_name", "user\_role" and change "id" to "learner\_id" as this is an error}
+\NormalTok{all.team.members }\OtherTok{=} \FunctionTok{select}\NormalTok{(all.team.members, id, team\_role)}
+\NormalTok{all.team.members }\OtherTok{=} \FunctionTok{rename}\NormalTok{(all.team.members, }\AttributeTok{learner\_id =}\NormalTok{ id)}
+
+\CommentTok{\# Remove "total\_downloads", "total\_caption\_views", "    total\_transcript\_views", "viewed\_hd", "viewed\_five\_percent", "viewed\_ten\_percent", "viewed\_twentyfive\_percent", "viewed\_seventyfive\_percent", "viewed\_onehundred\_percent", "console\_device\_percentage" , "desktop\_device\_percentage", "mobile\_device\_percentage", "tv\_device\_percentage", "tablet\_device\_percentage", "unknown\_device\_percentage", "antarctica\_views\_percentage"}
+\NormalTok{all.video.stats }\OtherTok{=} \FunctionTok{select}\NormalTok{(all.video.stats, step\_position,    title,  video\_duration, total\_views,    viewed\_fifty\_percent,   viewed\_ninetyfive\_percent,              europe\_views\_percentage,    oceania\_views\_percentage,   asia\_views\_percentage,  north\_america\_views\_percentage, south\_america\_views\_percentage, africa\_views\_percentage)}
+
+\CommentTok{\# Remove "id" and "responded\_at"}
+\NormalTok{all.weekly.sentiment.response.surveys }\OtherTok{=} \FunctionTok{select}\NormalTok{(all.weekly.sentiment.response.surveys, week\_number,  experience\_rating,  reason)}
+\end{Highlighting}
+\end{Shaded}
+
+It may be necessary to revisit this cleaning and merging stage if we run
+into difficulties during the transforming stage.
+
+\newpage
+
+\hypertarget{the-loop}{%
+\section{3. The Loop}\label{the-loop}}
+
+We now move onto the
+Transform\textless-\textgreater Visualize\textless-\textgreater Model
+Loop (aka \emph{The Loop}) and will start by asking some questions that
+we can start to investigate.
+
+\begin{figure}
+\centering
+\includegraphics{data-science-workflow.png}
+\caption{The \textbf{``R for Data Science''} model of required tools}
+\end{figure}
+
+\hypertarget{questionning}{%
+\subsection{Questionning}\label{questionning}}
+
+After exploring the data during the previous stages, we can ask some
+question worthy of investigation. These can be revised, changed or
+replaced during the process and it is expected to go through iterations
+(hence \emph{The Loop}).
+
+\hypertarget{q1.-what-can-we-learn-about-the-people-who-registered-for-this-mooc}{%
+\subsection{Q1. What can we learn about the people who registered for
+this
+MOOC?}\label{q1.-what-can-we-learn-about-the-people-who-registered-for-this-mooc}}
+
+We will need to look at dataframes that include information related to
+the users,if they completed the MOOC and reasons for leaving.
+
+\hypertarget{transforming}{%
+\subsubsection{Transforming}\label{transforming}}
+
+Within the dataset, there is an opportunity to merge columns from
+different dataframes to aid exploratory analysis.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Creating user\_profiles dataframe to understand users\textquotesingle{} backgrounds, when they left the MOOC and why, and their learner archetype}
+\NormalTok{user\_profiles }\OtherTok{=} \FunctionTok{left\_join}\NormalTok{(all.enrolments,all.archetype.survey.responses, }\AttributeTok{by =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{copy =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{keep =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Joining, by = "learner_id"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{user\_profiles }\OtherTok{=} \FunctionTok{left\_join}\NormalTok{(user\_profiles,all.leaving.survey.responses,}\AttributeTok{by =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{copy =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{keep =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Joining, by = c("learner_id", "left_at", "leaving_reason", "last_completed_step_at", "last_completed_step", "last_completed_week_number", "last_completed_step_number")
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# We will identify any FutureLearn team members within the user list.}
+\NormalTok{user\_profiles }\OtherTok{=} \FunctionTok{left\_join}\NormalTok{(user\_profiles,all.team.members, }\AttributeTok{by =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{copy =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{keep =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Joining, by = "learner_id"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Several values are displayed as *unknown* and this may cause issues when creating plots so we will replace them with *NA*}
+\NormalTok{user\_profiles }\OtherTok{=} \FunctionTok{na\_if}\NormalTok{(user\_profiles,}\StringTok{"Unknown"}\NormalTok{)}
+\NormalTok{user\_profiles }\OtherTok{=} \FunctionTok{as\_tibble}\NormalTok{(user\_profiles)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{visualizing}{%
+\subsubsection{Visualizing}\label{visualizing}}
+
+The first visualization we can create is a summary of enrolments on the
+MOOC.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(dplyr)}
+
+\CommentTok{\# We need to convert the dates into date class}
+\NormalTok{enrol\_date }\OtherTok{=} \FunctionTok{as.Date}\NormalTok{(user\_profiles}\SpecialCharTok{$}\NormalTok{enrolled\_at)}
+\NormalTok{participate\_date }\OtherTok{=} \FunctionTok{as.Date}\NormalTok{(}\FunctionTok{as\_datetime}\NormalTok{(user\_profiles}\SpecialCharTok{$}\NormalTok{fully\_participated\_at))}
+\NormalTok{leave\_date }\OtherTok{=} \FunctionTok{as.Date}\NormalTok{(user\_profiles}\SpecialCharTok{$}\NormalTok{left\_at)}
+
+\CommentTok{\# Calculation to understand how long learners stay on the course or how long to \textquotesingle{}participate\textquotesingle{} {-} this was not used for the following plots.}
+\NormalTok{time\_to\_participate }\OtherTok{=}\NormalTok{ participate\_date }\SpecialCharTok{{-}}\NormalTok{ enrol\_date}
+\NormalTok{time\_to\_leave }\OtherTok{=}\NormalTok{ leave\_date }\SpecialCharTok{{-}}\NormalTok{ enrol\_date}
+
+\CommentTok{\# Plotting enrolment date counts}
+\FunctionTok{ggplot}\NormalTok{(user\_profiles, }\FunctionTok{aes}\NormalTok{(enrol\_date)) }\SpecialCharTok{+} \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{color =} \StringTok{\textquotesingle{}turquoise4\textquotesingle{}}\NormalTok{, }\AttributeTok{bins =} \DecValTok{100}\NormalTok{, }\AttributeTok{show.legend =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{rmarkdown_files/figure-latex/unnamed-chunk-10-1.pdf}
+
+\textbf{Insights}
+
+A basic visualization of enrolments against date. We can see that,
+although there are seven runs of the MOOC, there are distinct clusters
+of enrolments starting in 2016 and finishing up in 2018. Other questions
+that come to mind when looking at this barchart:
+
+\begin{itemize}
+\item
+  Why are there such large spikes of enrolment in 2016? Was there a
+  marketing drive?
+\item
+  It would be good to know when the MOOC runs began and finished to
+  delineate the groupings.
+\item
+  It is clear registration was open after each course started.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(dplyr)}
+
+\CommentTok{\# Plotting enrolments against education level}
+\FunctionTok{ggplot}\NormalTok{(user\_profiles, }\FunctionTok{aes}\NormalTok{(enrol\_date,highest\_education\_level)) }\SpecialCharTok{+} \FunctionTok{geom\_count}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{colour =} \FunctionTok{factor}\NormalTok{(highest\_education\_level)),}\AttributeTok{show.legend =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{rmarkdown_files/figure-latex/unnamed-chunk-11-1.pdf}
+
+\textbf{Insights}
+
+This chart gives an overview of the enrolments over time against highest
+education level (including NA).
+
+\begin{itemize}
+\item
+  What does NA mean in this context? No education (unlikely, as
+  secondary is an option) or learners did not complete the form.
+\item
+  Overall it clear there were fewer outliers (PhD holders and less than
+  secondary) which is not surprising. There seems to be a fairly even
+  distribution across all other education levels.
+\end{itemize}
+
+\newpage
+
+\hypertarget{q2.-does-gender-play-a-role}{%
+\subsection{Q2. Does gender play a
+role?}\label{q2.-does-gender-play-a-role}}
+
+A factor of interest is that of gender. Given the sample size and
+relative anonymity of the learners, could there be anything interesting
+to learn?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(dplyr)}
+
+\CommentTok{\# Clean gender column to remove NAs}
+\NormalTok{user\_profiles\_complete }\OtherTok{=}\NormalTok{ user\_profiles[}\FunctionTok{complete.cases}\NormalTok{(user\_profiles}\SpecialCharTok{$}\NormalTok{gender),]}
+
+\CommentTok{\# Plot of job types against gender}
+\FunctionTok{ggplot}\NormalTok{(user\_profiles\_complete, }\FunctionTok{aes}\NormalTok{(gender, employment\_area)) }\SpecialCharTok{+} \FunctionTok{geom\_count}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{colour =}\NormalTok{ gender))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{rmarkdown_files/figure-latex/unnamed-chunk-12-1.pdf}
+
+\textbf{Insights}
+
+This chart presents employment area against gender with a NA category
+for those not in work or who preferred not to answer.
+
+\begin{itemize}
+\item
+  There is a slightly greater number of females working in
+  \emph{teaching and education} and \emph{accounting} on the course.
+\item
+  There is a noticably greater number of males working in \emph{IT and
+  information services} and \emph{engineering} on the course.
+\item
+  Most other categories have an equal distribution.
+\item
+  Nonbinary and other genders are represented in \emph{teaching},
+  \emph{marketing}, \emph{IT}, \emph{voluntary} and \emph{business
+  consulting}.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(dplyr)}
+
+\CommentTok{\# Plotting gender (count) against country}
+\FunctionTok{ggplot}\NormalTok{(user\_profiles\_complete, }\FunctionTok{aes}\NormalTok{(gender,country)) }\SpecialCharTok{+} \FunctionTok{geom\_count}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{colour =} \FunctionTok{factor}\NormalTok{(gender)),}\AttributeTok{show.legend =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{+}\FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text.y=}\FunctionTok{element\_blank}\NormalTok{()) }\SpecialCharTok{+} \FunctionTok{geom\_text}\NormalTok{(}\AttributeTok{data=}\FunctionTok{subset}\NormalTok{(user\_profiles\_complete, gender }\SpecialCharTok{==} \StringTok{"nonbinary"}\NormalTok{), }\FunctionTok{aes}\NormalTok{(}\AttributeTok{label =}\NormalTok{ country, }\AttributeTok{size =} \ConstantTok{NULL}\NormalTok{), }\AttributeTok{nudge\_x =} \FloatTok{0.2}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{geom\_text}\NormalTok{(}\AttributeTok{data=}\FunctionTok{subset}\NormalTok{(user\_profiles\_complete, gender }\SpecialCharTok{==} \StringTok{"other"}\NormalTok{), }\FunctionTok{aes}\NormalTok{(}\AttributeTok{label =}\NormalTok{ country, }\AttributeTok{size =} \ConstantTok{NULL}\NormalTok{), }\AttributeTok{nudge\_x =} \FloatTok{0.2}\NormalTok{, }\AttributeTok{check\_overlap =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{rmarkdown_files/figure-latex/unnamed-chunk-13-1.pdf}
+
+\textbf{Insights}
+
+This chart presents genders against country as learners on the MOOC. The
+author considered it interesting to see if there were any surprises in
+terms on nonbinary and other gender identification.
+
+\begin{itemize}
+\item
+  Nonbinary learners registered home countries as Pakistan, Kazakhstan,
+  Ghana, UK, Germany and Canada.
+\item
+  Other gender learners registered home countries as US, Norway,
+  Philippines, UK, Spain and Bulgaria.
+\item
+  Unsurprisingly, regardless of gender, UK learners represented the
+  largest group.
+\end{itemize}
+
+\newpage
+
+\hypertarget{q3.-how-popular-were-the-videos}{%
+\subsection{Q3. How popular were the
+videos?}\label{q3.-how-popular-were-the-videos}}
+
+A short exploration of the video content on the MOOC.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(dplyr)}
+
+\CommentTok{\# A violin chart of videos on the MOOC dispaying the total views}
+\FunctionTok{ggplot}\NormalTok{(all.video.stats, }\FunctionTok{aes}\NormalTok{(total\_views,title)) }\SpecialCharTok{+} \FunctionTok{geom\_violin}\NormalTok{()  }\SpecialCharTok{+} \FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label =}\NormalTok{ video\_duration, }\AttributeTok{size =} \ConstantTok{NULL}\NormalTok{),}\AttributeTok{check\_overlap =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{nudge\_x =} \FloatTok{0.2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{rmarkdown_files/figure-latex/unnamed-chunk-14-1.pdf}
+
+\textbf{Insights}
+
+This chart presents total views across all videos on the MOOC.
+
+\begin{itemize}
+\item
+  The \emph{Welcome to the course} video is the most watched video
+  followed by \emph{Privacy online and offline}.
+\item
+  There is little variation across the other videos with a 2\% watch
+  rate.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(dplyr)}
+
+\CommentTok{\# Let us look at what video engagement was like {-} how many people watched at least 95\% of the video?}
+\FunctionTok{ggplot}\NormalTok{(all.video.stats, }\FunctionTok{aes}\NormalTok{(viewed\_ninetyfive\_percent,title)) }\SpecialCharTok{+} \FunctionTok{geom\_violin}\NormalTok{()  }\SpecialCharTok{+} \FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label =}\NormalTok{ video\_duration, }\AttributeTok{size =} \ConstantTok{NULL}\NormalTok{, ),}\AttributeTok{check\_overlap =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{nudge\_x =} \FloatTok{0.2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{rmarkdown_files/figure-latex/unnamed-chunk-15-1.pdf}
+
+\textbf{Insights}
+
+This chart presents viewer engagement (at least 95\% of video) across
+videos on the MOOC.
+
+\begin{itemize}
+\item
+  Although \emph{Privacy online and offline} had a high click-rate, it
+  had low engagement.
+\item
+  Generally speaking, videos with shorter duration had higher
+  engagement.
+\end{itemize}
+
+\newpage
+
+\hypertarget{communicate}{%
+\section{4. Communicate}\label{communicate}}
+
+Ultimately communication is the most important aspect of exploratory
+data analysis. Without the ability to present a story to stakeholders,
+the impact of data analysis will not be felt. This communication
+imperative applies to technical specialists and non-specialists - either
+in spoken, written forms and code.
+
+\hypertarget{reporting}{%
+\subsection{Reporting}\label{reporting}}
+
+This analysis has been documented and reported via R Markdown document,
+along with a Git log and cache for reproducibility.
+
+\hypertarget{presenting}{%
+\subsection{Presenting}\label{presenting}}
+
+This analysis has been presented by video over 5 minutes for non-data
+users.
+
+\hypertarget{future-work}{%
+\subsection{Future Work}\label{future-work}}
+
+For future analysis of this dataset, more work could be done to explore
+the correlation between learner variables and their likelihood to leave
+the course early. This may not infer causality but certain trends may
+become apparent.
+
+\newpage
+
+\hypertarget{lessons-learned}{%
+\section{Lessons Learned}\label{lessons-learned}}
+
+The author has learned a lot during this exploratory data analysis of
+the \emph{FutureLearn Cybersecurity Dataset}, including but not limited
+to:
+
+\begin{itemize}
+\item
+  Using R for the first time;
+\item
+  Using Git for the first time;
+\item
+  Using plotting tools extensively;
+\item
+  Manipulating data between dataframes and working in data subsets; and,
+\item
+  Using a methodology to guide exploratory data analysis.
+\end{itemize}
+
+There are several takeaways, and things to improve for similar kind of
+work, which are:
+
+\begin{itemize}
+\item
+  When working to a deadline, try to do little and often rather than a
+  lot in a shorter period - the author spent a lot of time debugging
+  code into the \textbf{wee hours};
+\item
+  Formatting issues in R Markdown can be very time consuming - indeed
+  there are imperfections in this report;
+\item
+  A greater exposure to plotting types and statistical methods would
+  have made some of the analysis more straightforward;
+\item
+  Do not use spaces in directory names; and,
+\item
+  Data analysis, when approached in a structured manner, can be a lot of
+  fun!
+\end{itemize}
+
+\hypertarget{acknowledgements}{%
+\section{Acknowledgements}\label{acknowledgements}}
+
+The author would like to acknowledge all the support of the academic
+team whether during a lab session or at 11 o'clock at night. There has
+been a lot of learning on the job and stumbling through activities but
+it would have been impenetrable without the careful planning of the
+assignment and copious ad-hoc support. In particular, I would like to
+acknowledge:
+
+\begin{itemize}
+\item
+  Dr Matthew Forshaw
+\item
+  Dr Joe Matthews
+\end{itemize}
+
+\end{document}
